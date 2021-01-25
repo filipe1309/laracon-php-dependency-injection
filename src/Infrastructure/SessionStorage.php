@@ -2,15 +2,25 @@
 
 namespace Laracon\DependencyInjection\Infrastructure;
 
+use Laracon\DependencyInjection\Application\Helper\Logger;
+
 class SessionStorage 
 {
-  public function __construct()
+  protected $logger;
+
+  public function __construct(Logger $logger)
   {
     session_start();
+
+    $this->logger = $logger;
   }
 
   public function set($key, $value)
   {
+    $this->logger->log(
+      "Setting [$key] to [$value]"
+    );
+
     $_SESSION[$key] = $value;
   }
 
