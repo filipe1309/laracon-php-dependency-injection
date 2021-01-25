@@ -8,9 +8,9 @@ class User
 {
   protected $storage;
 
-  function __construct()
+  function __construct(SessionStorage $storage)
   {
-    $this->storage = new SessionStorage();
+    $this->storage = $storage;
   }
 
   function setLanguage($language)
